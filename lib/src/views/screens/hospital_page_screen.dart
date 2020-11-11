@@ -5,6 +5,7 @@ import '../../core/constants.dart';
 import '../../core/images.dart';
 import '../models/hospital_model.dart';
 import 'contact_us.dart';
+import 'login_screen.dart';
 
 class HospitalScreen extends StatefulWidget {
   @override
@@ -31,11 +32,12 @@ class _HospitalScreenState extends State<HospitalScreen> {
                         height: 50,
                       )),
                   SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                   Text(
                     "Welcome to IvoryCloud",
-                    style: TextStyle(color: Colors.white, fontSize: 30),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Colors.white, fontSize: 24),
                   ),
                   Text(
                     "select a hospital",
@@ -67,12 +69,12 @@ class _HospitalScreenState extends State<HospitalScreen> {
           IconButton(
               onPressed: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => null));
+                    context, MaterialPageRoute(builder: (context) => Login()));
               },
               icon: Icon(Icons.arrow_forward),
               color: Colors.grey[50],
               iconSize: 30.0),
-          kSmallVerticalSpacing,
+          kExtraSmallVerticalSpacing,
           Padding(
             padding: const EdgeInsets.only(right: 10),
             child: FlatButton(
@@ -82,7 +84,6 @@ class _HospitalScreenState extends State<HospitalScreen> {
               },
               child: Text(
                 "REGISTER YOUR HOSPITAL",
-                textAlign: TextAlign.end,
                 style: TextStyle(
                   decoration: TextDecoration.underline,
                   decorationColor: Colors.white,
