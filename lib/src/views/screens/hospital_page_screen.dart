@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../core/constants.dart';
 import '../../core/images.dart';
 import '../models/hospital_model.dart';
+import 'contact_us.dart';
 
 class HospitalScreen extends StatefulWidget {
   @override
@@ -55,10 +56,7 @@ class _HospitalScreenState extends State<HospitalScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 itemBuilder: (context, index) {
                   return GestureDetector(
-                    onTap: () {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (_) => null));
-                    },
+                    onTap: () {},
                     child: Padding(
                       padding: const EdgeInsets.only(top: 20.0),
                       child: buildContainer(index, 300),
@@ -70,14 +68,20 @@ class _HospitalScreenState extends State<HospitalScreen> {
           Icon(Icons.arrow_forward, color: Colors.grey[50], size: 30.0),
           kSmallVerticalSpacing,
           Padding(
-            padding: const EdgeInsets.only(right: 60),
-            child: Text("REGISTER YOUR HOSPITAL", textAlign: TextAlign.end,
-            style: TextStyle(
-            decoration:TextDecoration.underline,
-            decorationColor: Colors.white,
-            color: Colors.white,
-            fontSize: 16,
+            padding: const EdgeInsets.only(right: 10),
+            child: FlatButton(
+              onPressed: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (_) => ContactUs()));
+                    },
+              child: Text("REGISTER YOUR HOSPITAL", textAlign: TextAlign.end,
+              style: TextStyle(
+              decoration:TextDecoration.underline,
+              decorationColor: Colors.white,
+              color: Colors.white,
+              fontSize: 16,
           ),),
+            ),
           ),  
         ]
       )
