@@ -41,11 +41,10 @@ class _HospitalScreenState extends State<HospitalScreen> {
                     "select a hospital",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   )
-                  
                 ],
               ),
             ),
-          ),    
+          ),
           Container(
             height: MediaQuery.of(context).size.height * 0.5,
             margin: EdgeInsets.only(left: 30, right: 30),
@@ -64,28 +63,36 @@ class _HospitalScreenState extends State<HospitalScreen> {
                   );
                 }),
           ),
-         // SizedBox(height: 30),
-          Icon(Icons.arrow_forward, color: Colors.grey[50], size: 30.0),
+          // SizedBox(height: 30),
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => null));
+              },
+              icon: Icon(Icons.arrow_forward),
+              color: Colors.grey[50],
+              iconSize: 30.0),
           kSmallVerticalSpacing,
           Padding(
             padding: const EdgeInsets.only(right: 10),
             child: FlatButton(
               onPressed: () {
-                      Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (_) => ContactUs()));
-                    },
-              child: Text("REGISTER YOUR HOSPITAL", textAlign: TextAlign.end,
-              style: TextStyle(
-              decoration:TextDecoration.underline,
-              decorationColor: Colors.white,
-              color: Colors.white,
-              fontSize: 16,
-          ),),
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => ContactUs()));
+              },
+              child: Text(
+                "REGISTER YOUR HOSPITAL",
+                textAlign: TextAlign.end,
+                style: TextStyle(
+                  decoration: TextDecoration.underline,
+                  decorationColor: Colors.white,
+                  color: Colors.white,
+                  fontSize: 16,
+                ),
+              ),
             ),
-          ),  
-        ]
-      )
-    );
+          ),
+        ]));
   }
 
   Widget buildContainer(int index, double width) {
@@ -99,18 +106,25 @@ class _HospitalScreenState extends State<HospitalScreen> {
         padding: const EdgeInsets.all(16.0),
         child: Row(
           children: <Widget>[
-            Container(height: 60, width: 60,
-            decoration: BoxDecoration(
-          color: Colors.blue[100],
-          borderRadius: BorderRadius.all(Radius.circular(20))),),
-          SizedBox(width: 16,),
+            Container(
+              height: 60,
+              width: 60,
+              decoration: BoxDecoration(
+                  color: Colors.blue[100],
+                  borderRadius: BorderRadius.all(Radius.circular(20))),
+            ),
+            SizedBox(
+              width: 16,
+            ),
             Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text("${hospitalList[index].name}",
                     style: TextStyle(color: Colors.black)),
-                    SizedBox(height: 8,),
+                SizedBox(
+                  height: 8,
+                ),
                 Text("${hospitalList[index].desc}",
                     style: TextStyle(color: Colors.black)),
               ],

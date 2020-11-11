@@ -34,7 +34,6 @@ class CustomInputText extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: Colors.white,
-            width: 3
           ),
         ),
         // labelText: hintText,
