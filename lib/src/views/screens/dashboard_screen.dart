@@ -1,58 +1,80 @@
-import 'package:IvoryCloud/src/viewmodels/add_patient_viewmodel.dart';
+import 'package:IvoryCloud/src/core/constants.dart';
+import 'package:IvoryCloud/src/views/widgets/paginator.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
 
-import '../../core/constants.dart';
-import '../../core/utilities/notifier.dart';
-import '../../viewmodels/patient_viewmodel.dart';
-import '../widgets/paginator.dart';
-import 'add_patient_screen.dart';
+class Patient {
+  final String serialNo;
+  final String patientId;
+  final String name;
 
-class DashboardScreen extends StatefulWidget {
-  @override
-  _DashboardScreenState createState() => _DashboardScreenState();
+  Patient({this.serialNo, this.patientId, this.name});
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
-  int _rowPerPage = PaginatedDataTable.defaultRowsPerPage;
+List<Patient> patients = <Patient>[
+  Patient(
+    name: 'Jamiu Okanlawwon',
+    patientId: '1234001',
+    serialNo: '001',
+  ),
+  Patient(
+    name: 'Ridwan Oriola',
+    patientId: '1234002',
+    serialNo: '002',
+  ),
+  Patient(
+    name: 'Qoyyum Alabi',
+    patientId: '1234003',
+    serialNo: '003',
+  ),
+  Patient(
+    name: 'Salwat Ashake',
+    patientId: '1234004',
+    serialNo: '004',
+  )
+];
 
-  void navigateToAddPatient() {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => AddPatientScreen()),
-    );
-  }
-
+class DashboardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<PatientViewModel>(
-      create: (context) => PatientViewModel()..getAllPatients(),
+    return AnnotatedRegion(
+      value: SystemUiOverlayStyle(statusBarColor: Colors.transparent),
       child: Scaffold(
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            header(context),
+            header(),
             Expanded(
               child: Card(
                 margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
-                child: Consumer<PatientViewModel>(
-                  builder: (context, patientViewModel, _) {
-                    if (patientViewModel.state == NotifierState.loading) {
-                      return Center(child: CircularProgressIndicator());
-                    } else {
-                      if (patientViewModel.error != null) {
-                        print(patientViewModel.error);
-                        return null;
-                      } else {
-                        if (patientViewModel.patients == []) {
-                          return Center(
-                            child: Text('No Patients Recorded'),
-                          );
-                        } else {
-                          return patientsInfo(patientViewModel);
-                        }
-                      }
-                    }
-                  },
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Expanded(
+                      child: DataTable(
+                        columns: const <DataColumn>[
+                          DataColumn(label: Text('S/N')),
+                          DataColumn(label: Text('Patient ID')),
+                          DataColumn(label: Text('Name')),
+                        ],
+                        rows: patients
+                            .map((patient) => DataRow(
+                                  cells: <DataCell>[
+                                    DataCell(Text(patient.serialNo)),
+                                    DataCell(Text(patient.patientId)),
+                                    DataCell(Text(patient.name)),
+                                  ],
+                                ))
+                            .toList(),
+                      ),
+                    ),
+                    Paginator(
+                      selectedPage: 6,
+                      onItemTapped: (index) {
+                        print(index);
+                      },
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -62,7 +84,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  Widget header(BuildContext context) => Container(
+  Widget header() => Container(
         padding: EdgeInsets.all(24),
         decoration: BoxDecoration(
           color: kPrimaryColor,
@@ -85,6 +107,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       color: Colors.white,
                     ),
                   ),
+                  Spacer(),
+                  Icon(
+                    Icons.add_box_outlined,
+                    color: Colors.white,
+                  ),
+                  SizedBox(width: 12.0),
+                  Icon(
+                    Icons.filter_alt_outlined,
+                    color: Colors.white,
+                  ),
                 ],
               ),
               SizedBox(height: 10.0),
@@ -99,58 +131,4 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ),
       );
-
-  Widget patientsInfo(PatientViewModel patientViewModel) {
-    return SingleChildScrollView(
-      child: PaginatedDataTable(
-        header: Text('Patients'),
-        columns: const <DataColumn>[
-          DataColumn(label: Text('S/N')),
-          DataColumn(label: Text('Patient ID')),
-          DataColumn(label: Text('Name')),
-        ],
-        source: PatientDataSource(patientViewModel),
-        rowsPerPage: _rowPerPage,
-        actions: [
-          GestureDetector(
-            onTap: navigateToAddPatient,
-            child: Icon(Icons.add_circle_outline),
-          ),
-          SizedBox(width: 8.0),
-          Icon(
-            Icons.filter_alt_outlined,
-          ),
-        ],
-        onRowsPerPageChanged: (r) {
-          setState(() {
-            _rowPerPage = r;
-          });
-        },
-      ),
-    );
-  }
-}
-
-class PatientDataSource extends DataTableSource {
-  final PatientViewModel patientViewModel;
-
-  PatientDataSource(this.patientViewModel);
-
-  @override
-  DataRow getRow(int index) {
-    return DataRow.byIndex(index: index, cells: [
-      DataCell(Text(patientViewModel.patients[index].id)),
-      DataCell(Text(patientViewModel.patients[index].patientNumber)),
-      DataCell(Text(patientViewModel.patients[index].fullName)),
-    ]);
-  }
-
-  @override
-  bool get isRowCountApproximate => false;
-
-  @override
-  int get rowCount => patientViewModel.patients.length;
-
-  @override
-  int get selectedRowCount => 0;
 }
