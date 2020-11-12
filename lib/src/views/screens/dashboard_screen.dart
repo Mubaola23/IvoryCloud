@@ -1,4 +1,5 @@
 import 'package:IvoryCloud/src/core/constants.dart';
+import 'package:IvoryCloud/src/views/screens/add_patient_screen.dart';
 import 'package:IvoryCloud/src/views/widgets/paginator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -43,7 +44,7 @@ class DashboardScreen extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            header(),
+            header(context),
             Expanded(
               child: Card(
                 margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
@@ -84,7 +85,7 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
-  Widget header() => Container(
+  Widget header(context) => Container(
         padding: EdgeInsets.all(24),
         decoration: BoxDecoration(
           color: kPrimaryColor,
@@ -108,9 +109,13 @@ class DashboardScreen extends StatelessWidget {
                     ),
                   ),
                   Spacer(),
-                  Icon(
-                    Icons.add_box_outlined,
-                    color: Colors.white,
+                  GestureDetector(
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => AddPatientScreen())),
+                    child: Icon(
+                      Icons.add_box_outlined,
+                      color: Colors.white,
+                    ),
                   ),
                   SizedBox(width: 12.0),
                   Icon(
