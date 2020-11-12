@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// App Colors
-const kPrimaryColor = Color(0xFF08AED5);
+const kPrimaryColor = Color(0xFF08AED2);
 
 const kSecondaryColor = Color(0x36C4C4C4);
 
@@ -36,3 +36,21 @@ const kSmallHorizontalSpacing = SizedBox(width: 16);
 const kMediumHorizontalSpacing = SizedBox(width: 24);
 
 const kLargeHorizontalSpacing = SizedBox(width: 32);
+
+/// App text styles
+const kHeadingText = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.w700,
+  color: Colors.black,
+);
+
+const kLabelText = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.w500,
+  color: Colors.black,
+);
+
+const kLabelText2 = TextStyle(
+  fontSize: 14,
+  color: Colors.black,
+);

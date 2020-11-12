@@ -1,3 +1,4 @@
+import 'package:IvoryCloud/src/views/screens/home_screen.dart';
 import 'package:IvoryCloud/src/views/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -6,11 +7,12 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Ivory Cloud',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SplashScreen(),
+      home: HomeScreen(),
     );
   }
 }
