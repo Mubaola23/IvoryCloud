@@ -79,8 +79,8 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                 ),
                 kMediumVerticalSpacing,
                 AppTextField(
-                  keyboardType: TextInputType.datetime,
-                  hintText: 'Jamiu Okanlawon',
+                  keyboardType: TextInputType.text,
+                  hintText: '12/34/2000',
                   validator: validateNotEmpty,
                   filled: false,
                   title: 'D.O.B',
@@ -131,7 +131,7 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                 ),
                 kMediumVerticalSpacing,
                 AppTextField(
-                  keyboardType: TextInputType.text,
+                  keyboardType: TextInputType.streetAddress,
                   hintText: 'Block 234, GRA Ikeja',
                   validator: validateNotEmpty,
                   filled: false,
@@ -156,7 +156,7 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                 ),
                 kMediumVerticalSpacing,
                 AppTextField(
-                  keyboardType: TextInputType.text,
+                  keyboardType: TextInputType.emailAddress,
                   hintText: 'example@gmail.com',
                   validator: validateEmail,
                   filled: false,
@@ -267,44 +267,38 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
   }
 
   showAlertDialog(BuildContext context) {
-    Widget cancleButton = FlatButton(
-      child: GestureDetector(
-        onTap: () {
-          Navigator.pop(context);
-        },
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50.0),
-            color: kPrimaryColor,
-          ),
-          child: Text(
-            'YES',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
+    Widget yesButton = FlatButton(
+//      onPressed: () => _updateRecord(),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50.0),
+          color: kPrimaryColor,
+        ),
+        child: Text(
+          'YES',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
     );
-    Widget continueButton = FlatButton(
-      child: GestureDetector(
-        onTap: () {
-          _updateRecord();
-        },
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50.0),
-            color: Colors.blue.shade200,
-          ),
-          child: Text(
-            'NO',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
+    Widget noButton = FlatButton(
+      onPressed: () => Navigator.pop(context),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50.0),
+          color: Colors.blue.shade200,
+        ),
+        child: Text(
+          'NO',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
     );
 
     AlertDialog alert = AlertDialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(32))),
       title: Text(
         'Confirm Edit',
         textAlign: TextAlign.center,
@@ -314,7 +308,7 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
         'Do you want to continue with your decision to save edit?',
         textAlign: TextAlign.center,
       ),
-      actions: [cancleButton, continueButton],
+      actions: [yesButton, noButton],
     );
 
     showDialog(
