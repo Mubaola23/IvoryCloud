@@ -3,12 +3,12 @@ import 'package:IvoryCloud/src/views/widgets/app_dropdown.dart';
 import 'package:IvoryCloud/src/views/widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
 
-class EditPatientScreen extends StatefulWidget {
+class AddPatientScreen extends StatefulWidget {
   @override
-  _EditPatientScreenState createState() => _EditPatientScreenState();
+  _AddPatientScreenState createState() => _AddPatientScreenState();
 }
 
-class _EditPatientScreenState extends State<EditPatientScreen> {
+class _AddPatientScreenState extends State<AddPatientScreen> {
   final _formKey = GlobalKey<FormState>();
   final _ScaffoldKey = GlobalKey<ScaffoldState>();
   @override
@@ -49,41 +49,17 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                 ),
                 kLargeVerticalSpacing,
                 Text(
-                  'Lorem ipsum dolor sit amet,\n consectetur adipiscing elit, sed do  ',
-                  softWrap: true,
-                  textAlign: TextAlign.center,
-                ),
-                kLargeVerticalSpacing,
-                AppTextField(
-                  keyboardType: TextInputType.number,
-                  hintText: '1234000',
-                  validator: validateNotEmpty,
-                  filled: false,
-                  title: 'PATIENT ID',
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
+                  'ENTER PATIENT\'S DETAILS',
+                  style: kHeadingText,
                 ),
                 kMediumVerticalSpacing,
                 AppTextField(
                   keyboardType: TextInputType.text,
-                  hintText: 'Jamiu Okanlawon',
+                  textInputAction: TextInputAction.next,
+                  hintText: 'FULL NAME ',
                   validator: validateFullName,
                   filled: false,
-                  title: 'NAME',
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                ),
-                kMediumVerticalSpacing,
-                AppTextField(
-                  keyboardType: TextInputType.text,
-                  hintText: '12/34/2000',
-                  validator: validateNotEmpty,
-                  filled: false,
-                  title: 'D.O.B',
+                  title: '',
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: kPrimaryColor)),
                   border: OutlineInputBorder(
@@ -92,50 +68,19 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                 kMediumVerticalSpacing,
                 AppDropdown(
                   validator: validateGender,
-                  label: 'GENDER',
-                  value: 'Male',
-                  items: ['Male', 'Female'],
-                  onChanged: (_) {},
-                ),
-                kMediumVerticalSpacing,
-                AppDropdown(
-                  validator: validateNotEmpty,
-                  label: 'MARITAL STATUS',
-                  value: 'Married',
-                  items: ['Married', 'Single'],
+                  label: '',
+                  value: 'GENDER',
+                  items: ['GENDER', 'Male', 'Female'],
                   onChanged: (_) {},
                 ),
                 kMediumVerticalSpacing,
                 AppTextField(
-                  validator: validateNotEmpty,
                   keyboardType: TextInputType.text,
-                  hintText: 'Local government',
-                  filled: false,
-                  title: 'LGA',
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                ),
-                kMediumVerticalSpacing,
-                AppTextField(
-                  validator: validateNotEmpty,
-                  keyboardType: TextInputType.text,
-                  hintText: 'Lagos',
-                  filled: false,
-                  title: 'STATE',
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                ),
-                kMediumVerticalSpacing,
-                AppTextField(
-                  keyboardType: TextInputType.streetAddress,
-                  hintText: 'Block 234, GRA Ikeja',
+                  textInputAction: TextInputAction.next,
+                  hintText: 'ADDRESS',
                   validator: validateNotEmpty,
                   filled: false,
-                  title: 'HOME ADDRESS',
+                  title: '',
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: kPrimaryColor)),
                   border: OutlineInputBorder(
@@ -143,9 +88,10 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                 ),
                 kMediumVerticalSpacing,
                 AppTextField(
-                  title: 'PHONE NO',
+                  title: '',
                   keyboardType: TextInputType.number,
-                  hintText: 'Phone Number',
+                  textInputAction: TextInputAction.next,
+                  hintText: 'PHONE NUMBER',
                   filled: false,
                   validator: validatePhoneNumber,
                   maxlength: 11,
@@ -156,83 +102,54 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                 ),
                 kMediumVerticalSpacing,
                 AppTextField(
-                  keyboardType: TextInputType.emailAddress,
-                  hintText: 'example@gmail.com',
-                  validator: validateEmail,
+                  keyboardType: TextInputType.datetime,
+                  textInputAction: TextInputAction.next,
+                  hintText: 'DATE OF BIRTH',
+                  validator: validateNotEmpty,
                   filled: false,
-                  title: 'EMAIL',
+                  title: '',
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: kPrimaryColor)),
                   border: OutlineInputBorder(
                       borderSide: BorderSide(color: kPrimaryColor)),
                 ),
                 kMediumVerticalSpacing,
+                AppDropdown(
+                  validator: validateAllergies,
+                  label: '',
+                  value: 'ALLEGRIES',
+                  items: ['ALLEGRIES', 'ULCER', 'COLD'],
+                  onChanged: (_) {},
+                ),
+                kMediumVerticalSpacing,
                 AppTextField(
-                  keyboardType: TextInputType.text,
-                  hintText: 'Patient type',
                   validator: validateNotEmpty,
+                  keyboardType: TextInputType.text,
+                  textInputAction: TextInputAction.next,
+                  hintText: 'DISEASE',
                   filled: false,
-                  title: 'PATIENT TYPE',
+                  title: '',
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: kPrimaryColor)),
                   border: OutlineInputBorder(
                       borderSide: BorderSide(color: kPrimaryColor)),
                 ),
                 kMediumVerticalSpacing,
-                AppTextField(
-                  keyboardType: TextInputType.text,
-                  hintText: '3:00 PM',
-                  validator: validateNotEmpty,
-                  filled: false,
-                  title: 'TIME OF REGISTRATION',
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
+                AppDropdown(
+                  validator: validateGender,
+                  label: '',
+                  value: 'BLOOD TYPE',
+                  items: ['BLOOD TYPE', 'O+', 'O-'],
+                  onChanged: (_) {},
                 ),
                 kMediumVerticalSpacing,
                 AppTextField(
                   keyboardType: TextInputType.text,
-                  hintText: 'O-',
+                  textInputAction: TextInputAction.done,
+                  hintText: 'ADDITIONAL INFO',
                   validator: validateNotEmpty,
                   filled: false,
-                  title: 'BlOOD GROUP',
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                ),
-                kMediumVerticalSpacing,
-                AppTextField(
-                  keyboardType: TextInputType.text,
-                  hintText: 'O-',
-                  validator: validateNotEmpty,
-                  filled: false,
-                  title: 'BlOOD TYPE',
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                ),
-                kMediumVerticalSpacing,
-                AppTextField(
-                  keyboardType: TextInputType.text,
-                  hintText: '150 kg',
-                  validator: validateNotEmpty,
-                  filled: false,
-                  title: 'WEIGHT',
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                ),
-                kMediumVerticalSpacing,
-                AppTextField(
-                  keyboardType: TextInputType.text,
-                  hintText: '150 cm',
-                  validator: validateNotEmpty,
-                  filled: false,
-                  title: 'HEIGHT',
+                  title: '',
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: kPrimaryColor)),
                   border: OutlineInputBorder(
@@ -241,7 +158,7 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                 kLargeVerticalSpacing,
                 GestureDetector(
                   onTap: () {
-                    _updateRecord();
+                    _addPatient();
                   },
                   child: Container(
                     padding:
@@ -251,7 +168,7 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                       color: kPrimaryColor,
                     ),
                     child: Text(
-                      'SAVE EDIT',
+                      'ADD PATIENT',
                       style: TextStyle(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
@@ -268,7 +185,7 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
 
   showAlertDialog(BuildContext context) {
     Widget yesButton = FlatButton(
-//      onPressed: () => _updateRecord(),
+//      onPressed: () => _addPatient(),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
         decoration: BoxDecoration(
@@ -318,20 +235,13 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
         });
   }
 
-  void _updateRecord() async {
+  void _addPatient() async {
     FocusScope.of(context).unfocus();
 
     if (_formKey.currentState.validate()) {
       showAlertDialog(context);
     }
   }
-}
-
-String validateEmail(String value) {
-  bool emailValid = RegExp(
-          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-      .hasMatch(value);
-  return !emailValid ? 'Enter a Valid Email Address' : null;
 }
 
 String validatePhoneNumber(String value) =>
@@ -345,3 +255,9 @@ String validateFullName(String value) =>
 
 String validateGender(String value) =>
     value == 'Gender' ? 'Choose one of male or female' : null;
+
+String validateAllergies(String value) =>
+    value == 'Allergies' ? 'Choose an allergy' : null;
+
+String validateBloodType(String value) =>
+    value == 'Blood Type' ? 'Choose a blood type' : null;
