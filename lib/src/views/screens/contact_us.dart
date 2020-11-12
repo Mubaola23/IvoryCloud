@@ -57,10 +57,11 @@ class _ContactUsState extends State<ContactUs> {
     return Scaffold(
       backgroundColor: kPrimaryColor,
       body: Container(
+        height: double.infinity,
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(backgroundImage), fit: BoxFit.cover)),
-        margin: EdgeInsets.symmetric(horizontal: 16),
+        //margin: EdgeInsets.symmetric(horizontal: 16),
         child: Form(
           key: _formKey,
           child: SingleChildScrollView(
@@ -76,7 +77,8 @@ class _ContactUsState extends State<ContactUs> {
                       Container(
                         width: 40,
                         height: 40,
-                        padding: EdgeInsets.only(left: 4),
+                        margin: EdgeInsets.only(left: 7),
+                        padding: EdgeInsets.only(left: 7),
                         decoration: BoxDecoration(
                             border: Border.all(width: 2, color: Colors.white),
                             borderRadius: BorderRadius.circular(20)),

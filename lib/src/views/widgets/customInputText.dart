@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomInputText extends StatelessWidget {
-  final Function validator;
+  final Function(String) validator;
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;

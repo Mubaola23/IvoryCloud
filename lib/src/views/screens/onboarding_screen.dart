@@ -27,7 +27,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   Widget _indicator(bool isActive) {
     return AnimatedContainer(
-      duration: Duration(milliseconds:150),
+      duration: Duration(milliseconds: 150),
       margin: EdgeInsets.symmetric(horizontal: 4.0),
       height: 10.0,
       width: isActive ? 10.0 : 10.0,
@@ -44,9 +44,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         backgroundColor: kPrimaryColor,
         body: Container(
           decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage(backgroundImage), 
-          fit: BoxFit.cover)
-        ),
+              image: DecorationImage(
+                  image: AssetImage(backgroundImage), fit: BoxFit.cover)),
           child: SingleChildScrollView(
             child: AnnotatedRegion<SystemUiOverlayStyle>(
               value: SystemUiOverlayStyle.light,
@@ -61,8 +60,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         child: SvgPicture.asset(
                           logo,
                           height: 50,
-                        )
-                      ),
+                        )),
                     Container(
                       height: MediaQuery.of(context).size.height * 0.55,
                       child: PageView(
@@ -86,8 +84,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               padding: EdgeInsets.only(left: 25, right: 25),
                               child: OnboardColumn(
                                 imgPath: onboarding3,
-                              )
-                            )
+                              ))
                         ],
                       ),
                     ),
@@ -102,31 +99,32 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       height: 40,
                     ),
                     _currentPage != _numPages - 1
-                      ? CustomButton(
-                          text: "NEXT",
-                          width: 100,
-                          onButtonPressed: () {
-                            _pageController.nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.ease,
-                            );
-                          },
-                        )
-                      : CustomButton(
-                          text: "GET STARTED",
-                          width: 400.0,
-                          onButtonPressed: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => HospitalScreen()));
-                          },
-                        ),
+                        ? CustomButton(
+                            text: "NEXT",
+                            width: 100,
+                            onButtonPressed: () {
+                              _pageController.nextPage(
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.ease,
+                              );
+                            },
+                          )
+                        : CustomButton(
+                            text: "GET STARTED",
+                            width: 400.0,
+                            onButtonPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HospitalScreen()));
+                            },
+                          ),
                   ],
                 ),
               ),
             ),
           ),
-        )
-      );
+        ));
   }
 }
 
@@ -143,13 +141,12 @@ class OnboardColumn extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Center(
-          child: Image.asset(
-            imgPath,
-            matchTextDirection: false,
-            height: MediaQuery.of(context).size.height * 0.5,
-            width: MediaQuery.of(context).size.width * 0.6,
-          )
-        )
+            child: Image.asset(
+          imgPath,
+          matchTextDirection: false,
+          height: MediaQuery.of(context).size.height * 0.5,
+          width: MediaQuery.of(context).size.width * 0.6,
+        ))
       ],
     );
   }

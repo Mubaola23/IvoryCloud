@@ -17,71 +17,117 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     // backgroundColor: kPrimaryColor,
+      //backgroundColor: kPrimaryColor,
       body: Container(
-        padding: EdgeInsets.symmetric(vertical: 30, horizontal:30),
+        height: double.infinity,
+        padding: EdgeInsets.symmetric(vertical: 30, horizontal: 30),
         decoration: BoxDecoration(
-          image: DecorationImage(image: AssetImage(backgroundImage), 
-          fit: BoxFit.cover)
-        ),
-        child: Column(
-          children: [
-        Row(
-          children: [
-        Text("Login", style: TextStyle(
-          color: Colors.white, fontSize: 50,
-        ),),
-          ],
-        ),
-        SizedBox(height: 50,),
-        Center(child: SvgPicture.asset(logo)),
-        SizedBox(height: 30,),
-        Row(
-          children: [
-        Text("EMAIL", style: TextStyle(
-          color: Colors.white, fontSize: 14,
-        ),)
-          ]
-        ),
-        CustomInputText(hintText: "emailaddress@example.com",),
-        SizedBox(height: 20,),
-        Row(
-          children: [
-        Text("PASSWORD", style: TextStyle(
-          color: Colors.white, fontSize: 14,
-        ),)
-          ]
-        ),
-        CustomInputText(hintText: "***********",),
-        SizedBox(height: 50,),
-        CustomButton(text: "LOGIN", width: 300.0,
-        onButtonPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
-        },
-        ),
-        SizedBox(height: 50,),
-        RichText(
-          text: TextSpan(text:"DON'T HAVE AN ACCOUNT? ",              
-        style: TextStyle(
-          color: Colors.white, fontSize: 14,
-        ),
-        children: [
-          TextSpan(text: "SIGN UP", style: TextStyle(
-          decoration: TextDecoration.underline,
-          decorationColor: Colors.white,
-          color: Colors.white,
-          fontSize: 16,
-        ),
-        recognizer: TapGestureRecognizer()..onTap = (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=> SignUp()));})
-        ])
-        )
-          ],
+            image: DecorationImage(
+                image: AssetImage(backgroundImage), fit: BoxFit.cover)),
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      "Login",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 50,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                Center(child: SvgPicture.asset(logo)),
+                SizedBox(
+                  height: 30,
+                ),
+                Row(children: [
+                  Text(
+                    "EMAIL",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                    ),
+                  )
+                ]),
+                
+                CustomInputText(
+                  validator: validateNotEmpty,
+                  hintText: "emailaddress@example.com",
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(children: [
+                  Text(
+                    "PASSWORD",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                    ),
+                  )
+                ]),
+                CustomInputText(
+                  validator: validateNotEmpty,
+                  hintText: "***********",
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                CustomButton(
+                  text: "LOGIN",
+                  width: 300.0,
+                  onButtonPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                  },
+                ),
+                SizedBox(
+                  height: 50,
+                ),
+                RichText(
+                    text: TextSpan(
+                        text: "DON'T HAVE AN ACCOUNT? ",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                        ),
+                        children: [
+                      TextSpan(
+                          text: "SIGN UP",
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            decorationColor: Colors.white,
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SignUp()));
+                            })
+                    ]))
+              ],
+            ),
+          ),
         ),
       ),
     );
   }
 }
+
+String validateNotEmpty(String value) =>
+    value.isEmpty ? 'Field cannot be empty' : null;

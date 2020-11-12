@@ -16,87 +16,93 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+    final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
      // backgroundColor: kPrimaryColor,
       body: Container(
+        height: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(image: AssetImage(backgroundImage), 
           fit: BoxFit.cover)
         ),
         child: SingleChildScrollView(
-                child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Text("Sign up", style: TextStyle(
-                      color: Colors.white, fontSize: 50,
-                    ),),
-                  ],
-                ),
-                SizedBox(height: 50,),
-                Center(child: SvgPicture.asset(logo)),
-                SizedBox(height: 30,),
-                Row(
-                  children: [
-                    Text("USER ID", style: TextStyle(
-                      color: Colors.white, fontSize: 14,
-                    ),)
-                  ]
-                ),
-                CustomInputText(hintText: "FHEO36VS34J",),
-                SizedBox(height: 20,),
-                Row(
-                  children: [
-                    Text("EMAIL", style: TextStyle(
-                      color: Colors.white, fontSize: 14,
-                    ),)
-                  ]
-                ),
-                CustomInputText(hintText: "emailaddress@example.com",),
-                SizedBox(height: 20,),
-                Row(
-                  children: [
-                    Text("PASSWORD", style: TextStyle(
-                      color: Colors.white, fontSize: 14,
-                    ),)
-                  ]
-                ),
-                CustomInputText(hintText: "***********",),
-                SizedBox(height: 20,),
-                Row(
-                  children: [
-                    Text("CONFIRM PASSWORD", style: TextStyle(
-                      color: Colors.white, fontSize: 14,
-                    ),)
-                  ]
-                ),
-                CustomInputText(hintText: "***********",),
-                SizedBox(height: 20,),
-                CustomButton(text: "SIGN UP", width: 300.0,
-                onButtonPressed: (){},
-                ),
-                SizedBox(height: 10,),
-                RichText(
-                  text: TextSpan(text:"ALREADY HAVE AN ACCOUNT? ",              
-                style: TextStyle(
-                      color: Colors.white, fontSize: 14,
-                    ),
+          child: Form(
+            key: _formKey,
+                      child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+              child: Column(
+                children: [
+                  Row(
                     children: [
-                      TextSpan(text: "LOGIN", style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      decorationColor: Colors.white,
-                      color: Colors.white,
-                      fontSize: 16,
-                    ),
-                    recognizer: TapGestureRecognizer()..onTap = (){
-                                    Navigator.push(context, MaterialPageRoute(builder: (context)=> Login()));})
-                    ])
-                )
-              ],
+                      Text("Sign up", style: TextStyle(
+                        color: Colors.white, fontSize: 50,
+                      ),),
+                    ],
+                  ),
+                  SizedBox(height: 50,),
+                  Center(child: SvgPicture.asset(logo)),
+                  SizedBox(height: 30,),
+                  Row(
+                    children: [
+                      Text("USER ID", style: TextStyle(
+                        color: Colors.white, fontSize: 14,
+                      ),)
+                    ]
+                  ),
+                  CustomInputText(hintText: "FHEO36VS34J",),
+                  SizedBox(height: 20,),
+                  Row(
+                    children: [
+                      Text("EMAIL", style: TextStyle(
+                        color: Colors.white, fontSize: 14,
+                      ),)
+                    ]
+                  ),
+                  CustomInputText(hintText: "emailaddress@example.com",),
+                  SizedBox(height: 20,),
+                  Row(
+                    children: [
+                      Text("PASSWORD", style: TextStyle(
+                        color: Colors.white, fontSize: 14,
+                      ),)
+                    ]
+                  ),
+                  CustomInputText(hintText: "***********",),
+                  SizedBox(height: 20,),
+                  Row(
+                    children: [
+                      Text("CONFIRM PASSWORD", style: TextStyle(
+                        color: Colors.white, fontSize: 14,
+                      ),)
+                    ]
+                  ),
+                  CustomInputText(hintText: "***********",),
+                  SizedBox(height: 20,),
+                  CustomButton(text: "SIGN UP", width: 300.0,
+                  onButtonPressed: (){},
+                  ),
+                  SizedBox(height: 10,),
+                  RichText(
+                    text: TextSpan(text:"ALREADY HAVE AN ACCOUNT? ",              
+                  style: TextStyle(
+                        color: Colors.white, fontSize: 14,
+                      ),
+                      children: [
+                        TextSpan(text: "LOGIN", style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.white,
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                      recognizer: TapGestureRecognizer()..onTap = (){
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> Login()));})
+                      ])
+                  )
+                ],
+              ),
             ),
           ),
         ),
