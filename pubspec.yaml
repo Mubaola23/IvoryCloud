@@ -18,6 +18,7 @@ dependencies:
 dependency_overrides:
   flutter_svg: ^0.18.1
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
