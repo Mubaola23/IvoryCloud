@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "254834052979",
+    "firebase_url": "https://ivorycloud-5e92d.firebaseio.com",
+    "project_id": "ivorycloud-5e92d",
+    "storage_bucket": "ivorycloud-5e92d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254834052979:android:381df5c7f8ef3faaf5ff06",
+        "android_client_info": {
+          "package_name": "com.example.IvoryCloud"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254834052979-2jmig60vmqai2358im91ke57qd81d012.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNr1tk_ndut2uVSF5qDq3-UhdoHwth-is"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254834052979-2jmig60vmqai2358im91ke57qd81d012.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
