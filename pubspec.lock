@@ -78,13 +78,11 @@ packages:
     version: "4.1.2+1"
   flutter_svg:
     dependency: "direct overridden"
-
     description:
       name: flutter_svg
       url: "https://pub.dartlang.org"
     source: hosted
-
-    version: "0.19.1"
+    version: "0.18.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -202,6 +200,4 @@ packages:
     version: "4.5.1"
 sdks:
   dart: ">=2.10.0-110 <2.11.0"
-
-  flutter: ">=1.18.0-6.0.pre <2.0.0"
-
+  flutter: ">=0.3.6 <2.0.0"

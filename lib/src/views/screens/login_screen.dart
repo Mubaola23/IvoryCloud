@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:IvoryCloud/src/views/screens/home_screen.dart';
 import 'package:IvoryCloud/src/views/screens/signup_screen.dart';
 import 'package:IvoryCloud/src/views/widgets/customButton.dart';
 import 'package:IvoryCloud/src/views/widgets/customInputText.dart';
@@ -57,7 +58,9 @@ class _LoginState extends State<Login> {
         CustomInputText(hintText: "***********",),
         SizedBox(height: 50,),
         CustomButton(text: "LOGIN", width: 300.0,
-        onButtonPressed: (){},
+        onButtonPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+        },
         ),
         SizedBox(height: 50,),
         RichText(
