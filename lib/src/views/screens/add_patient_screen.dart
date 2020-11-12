@@ -1,7 +1,9 @@
+
 import 'package:IvoryCloud/src/core/constants.dart';
 import 'package:IvoryCloud/src/views/widgets/app_dropdown.dart';
 import 'package:IvoryCloud/src/views/widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
+
 
 class AddPatientScreen extends StatefulWidget {
   @override
@@ -9,6 +11,7 @@ class AddPatientScreen extends StatefulWidget {
 }
 
 class _AddPatientScreenState extends State<AddPatientScreen> {
+
   final _formKey = GlobalKey<FormState>();
   final _ScaffoldKey = GlobalKey<ScaffoldState>();
   @override
@@ -176,12 +179,15 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
                 ),
                 kLargeVerticalSpacing,
               ],
+
             ),
           ),
         ),
       ),
     );
   }
+
+
 
   showAlertDialog(BuildContext context) {
     Widget yesButton = FlatButton(
@@ -261,3 +267,4 @@ String validateAllergies(String value) =>
 
 String validateBloodType(String value) =>
     value == 'Blood Type' ? 'Choose a blood type' : null;
+
