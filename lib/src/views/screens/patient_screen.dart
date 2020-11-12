@@ -1,4 +1,6 @@
 import 'package:IvoryCloud/src/core/constants.dart';
+import 'package:IvoryCloud/src/views/screens/all_reports_screen.dart';
+import 'package:IvoryCloud/src/views/screens/all_visits_screen.dart';
 import 'package:IvoryCloud/src/views/screens/edit_patient_screen.dart';
 import 'package:IvoryCloud/src/views/widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +11,19 @@ class PatientScreen extends StatefulWidget {
 }
 
 class _PatientScreenState extends State<PatientScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final _ScaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _ScaffoldKey,
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         leading: GestureDetector(
-          onTap: () {},
+          onTap: () {
+//            Navigator.pop(context);
+          },
           child: Icon(
             Icons.arrow_back_ios,
             color: Colors.black,
@@ -95,33 +102,71 @@ class _PatientScreenState extends State<PatientScreen> {
                           blurRadius: 2.0,
                           offset: Offset(0.0, 0.0))
                     ]),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'enter new report',
-                      style: kLabelText,
-                    ),
-                    kMediumVerticalSpacing,
-                    Text("REPORT:"),
-                    kTinyVerticalSpacing,
-                    AppTextField(
-                      title: '',
-                      keyboardType: TextInputType.text,
-                      textInputAction: TextInputAction.next,
-                      hintText: 'file a report',
-                    ),
-                    kMediumVerticalSpacing,
-                    Text("EMERGENCY LEVEL:"),
-                    kTinyVerticalSpacing,
-                    AppTextField(
-                      title: '',
-                      keyboardType: TextInputType.text,
-                      textInputAction: TextInputAction.done,
-                      hintText: 'file emergency level',
-                    ),
-                  ],
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'enter new report',
+                        style: kLabelText,
+                      ),
+                      kMediumVerticalSpacing,
+                      Text("REPORT:"),
+                      kTinyVerticalSpacing,
+                      AppTextField(
+                        title: '',
+                        keyboardType: TextInputType.text,
+                        validator: validateNotEmpty,
+                        textInputAction: TextInputAction.next,
+                        hintText: 'file a report',
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: kPrimaryColor)),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(color: kPrimaryColor)),
+                      ),
+                      kMediumVerticalSpacing,
+                      Text("EMERGENCY LEVEL:"),
+                      kTinyVerticalSpacing,
+                      AppTextField(
+                        title: '',
+                        keyboardType: TextInputType.text,
+                        validator: validateNotEmpty,
+                        textInputAction: TextInputAction.done,
+                        hintText: 'file emergency level',
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: kPrimaryColor)),
+                        border: OutlineInputBorder(
+                            borderSide: BorderSide(color: kPrimaryColor)),
+                      ),
+                      kLargeVerticalSpacing,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              _submit();
+                            },
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 64.0, vertical: 16.0),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50.0),
+                                color: kPrimaryColor,
+                              ),
+                              child: Text(
+                                'SUBMIT',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               Container(
@@ -155,6 +200,12 @@ class _PatientScreenState extends State<PatientScreen> {
         ),
       ),
     );
+  }
+
+  void _submit() async {
+    FocusScope.of(context).unfocus();
+
+    if (_formKey.currentState.validate()) {}
   }
 
   Widget _reports() {
@@ -200,6 +251,22 @@ class _PatientScreenState extends State<PatientScreen> {
             ),
           ),
         ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              GestureDetector(
+                child: Text(
+                  'View all',
+                  style: TextStyle(decoration: TextDecoration.underline),
+                ),
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => AllReportsScreen())),
+              )
+            ],
+          ),
+        ),
       ],
     );
   }
@@ -214,37 +281,55 @@ class _PatientScreenState extends State<PatientScreen> {
           child: ListView.builder(
             shrinkWrap: true,
             itemCount: 10,
-            itemBuilder: (context, index) => ListTile(
+            itemBuilder: (context, index) => Card(
+              child: ListTile(
 //              isThreeLine: true,
-              leading: Card(
-                color: kTextFieldFillColor,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 10.0, vertical: 8.0),
-                  child: Column(
-                    children: [
-                      Text(
-                        'Nov',
-                        style: TextStyle(fontSize: 12),
-                      ),
-                      Text('09', style: TextStyle(fontSize: 12))
-                    ],
+                leading: Card(
+                  color: kTextFieldFillColor,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10.0, vertical: 8.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Nov',
+                          style: TextStyle(fontSize: 12),
+                        ),
+                        Text('09', style: TextStyle(fontSize: 12))
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              title: Text(
-                'Regular Checkup | Emergency Lvl: Low',
-                style: TextStyle(fontSize: 12),
-                softWrap: false,
-              ),
-              subtitle: Text(
-                'Dr. Amanda Lorems',
-              ),
-              trailing: Text(
-                '2020',
-                style: TextStyle(fontSize: 12),
+                title: Text(
+                  'Regular Checkup | Emergency Lvl: Low',
+                  style: TextStyle(fontSize: 12),
+                  softWrap: false,
+                ),
+                subtitle: Text(
+                  'Dr. Amanda Lorems',
+                ),
+                trailing: Text(
+                  '2020',
+                  style: TextStyle(fontSize: 12),
+                ),
               ),
             ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              GestureDetector(
+                child: Text(
+                  'View all',
+                  style: TextStyle(decoration: TextDecoration.underline),
+                ),
+                onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => AllVisitsScreen())),
+              )
+            ],
           ),
         ),
       ],
@@ -298,3 +383,6 @@ class PatientDetail extends StatelessWidget {
     );
   }
 }
+
+String validateNotEmpty(String value) =>
+    value.isEmpty ? 'Field cannot be empty' : null;
