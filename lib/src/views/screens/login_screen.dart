@@ -60,8 +60,7 @@ class _LoginState extends State<Login> {
                       fontSize: 14,
                     ),
                   )
-                ]),
-                
+                ]),        
                 CustomInputText(
                   validator: validateNotEmpty,
                   hintText: "emailaddress@example.com",
