@@ -51,24 +51,24 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Expanded(
-                        child: DataTable(
-                          columns: const <DataColumn>[
-                            DataColumn(label: Text('S/N')),
-                            DataColumn(label: Text('Patient ID')),
-                            DataColumn(label: Text('Name')),
-                          ],
-                          rows: patients
-                              .map((patient) => DataRow(
-                                    cells: <DataCell>[
-                                      DataCell(Text(patient.serialNo)),
-                                      DataCell(Text(patient.patientId)),
-                                      DataCell(Text(patient.name)),
-                                    ],
-                                  ))
-                              .toList(),
-                        ),
-                      ),
+                      // Expanded(
+                      //   child: DataTable(
+                      //     columns: const <DataColumn>[
+                      //       DataColumn(label: Text('S/N')),
+                      //       DataColumn(label: Text('Patient ID')),
+                      //       DataColumn(label: Text('Name')),
+                      //     ],
+                      //     rows: patients
+                      //         .map((patient) => DataRow(
+                      //               cells: <DataCell>[
+                      //                 DataCell(Text(patient.serialNo)),
+                      //                 DataCell(Text(patient.patientId)),
+                      //                 DataCell(Text(patient.name)),
+                      //               ],
+                      //             ))
+                      //         .toList(),
+                      //   ),
+                      // ),
                       Paginator(
                         selectedPage: 1,
                         onItemTapped: (index) {

@@ -15,9 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
   final List<Widget> _children = [
-     DashboardScreen(),
-    // Center(child: Text('2')),
-    // Center(child: Text('3')),
+    DashboardScreen(),
     SearchScreen(),
     PatientScreen(),
   ];
