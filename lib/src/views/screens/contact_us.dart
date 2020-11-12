@@ -55,17 +55,11 @@ class _ContactUsState extends State<ContactUs> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //     leading: IconButton(
-      //       icon: Icon( Icons.arrow_back_ios ),
-      //       onPressed: () {Navigator.pop(context);
-      //       },
-      //     ),
-      //   backgroundColor: Colors.transparent,
-      //    ),
-
       backgroundColor: kPrimaryColor,
       body: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(backgroundImage), fit: BoxFit.cover)),
         margin: EdgeInsets.symmetric(horizontal: 16),
         child: Form(
           key: _formKey,

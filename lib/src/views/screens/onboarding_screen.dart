@@ -42,80 +42,86 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: kPrimaryColor,
-        body: SingleChildScrollView(
-          child: AnnotatedRegion<SystemUiOverlayStyle>(
-            value: SystemUiOverlayStyle.light,
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 60),
-              child: Column(
-                //  crossAxisAlignment: CrossAxisAlignment.start,
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                      alignment: Alignment.center,
-                      child: SvgPicture.asset(
-                        logo,
-                        height: 50,
-                      )
-                    ),
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.55,
-                    child: PageView(
-                      physics: ClampingScrollPhysics(),
-                      controller: _pageController,
-                      onPageChanged: (int page) {
-                        setState(() {
-                          _currentPage = page;
-                        });
-                      },
-                      children: <Widget>[
-                        OnboardColumn(
-                          imgPath: onboarding1,
-                        ),
-                        Padding(
-                            padding: EdgeInsets.only(left: 25, right: 25),
-                            child: OnboardColumn(
-                              imgPath: onboarding2,
-                            )),
-                        Padding(
-                            padding: EdgeInsets.only(left: 25, right: 25),
-                            child: OnboardColumn(
-                              imgPath: onboarding3,
-                            )
-                          )
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: _buildPageIndicator(),
-                  ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  _currentPage != _numPages - 1
-                    ? CustomButton(
-                        text: "NEXT",
-                        width: 100,
-                        onButtonPressed: () {
-                          _pageController.nextPage(
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.ease,
-                          );
-                        },
-                      )
-                    : CustomButton(
-                        text: "GET STARTED",
-                        width: 200,
-                        onButtonPressed: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => HospitalScreen()));
-                        },
+        body: Container(
+          decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage(backgroundImage), 
+          fit: BoxFit.cover)
+        ),
+          child: SingleChildScrollView(
+            child: AnnotatedRegion<SystemUiOverlayStyle>(
+              value: SystemUiOverlayStyle.light,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 60),
+                child: Column(
+                  //  crossAxisAlignment: CrossAxisAlignment.start,
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                        alignment: Alignment.center,
+                        child: SvgPicture.asset(
+                          logo,
+                          height: 50,
+                        )
                       ),
-                ],
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.55,
+                      child: PageView(
+                        physics: ClampingScrollPhysics(),
+                        controller: _pageController,
+                        onPageChanged: (int page) {
+                          setState(() {
+                            _currentPage = page;
+                          });
+                        },
+                        children: <Widget>[
+                          OnboardColumn(
+                            imgPath: onboarding1,
+                          ),
+                          Padding(
+                              padding: EdgeInsets.only(left: 25, right: 25),
+                              child: OnboardColumn(
+                                imgPath: onboarding2,
+                              )),
+                          Padding(
+                              padding: EdgeInsets.only(left: 25, right: 25),
+                              child: OnboardColumn(
+                                imgPath: onboarding3,
+                              )
+                            )
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: _buildPageIndicator(),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    _currentPage != _numPages - 1
+                      ? CustomButton(
+                          text: "NEXT",
+                          width: 100,
+                          onButtonPressed: () {
+                            _pageController.nextPage(
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.ease,
+                            );
+                          },
+                        )
+                      : CustomButton(
+                          text: "GET STARTED",
+                          width: 400.0,
+                          onButtonPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => HospitalScreen()));
+                          },
+                        ),
+                  ],
+                ),
               ),
             ),
           ),

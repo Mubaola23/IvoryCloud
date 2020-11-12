@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -25,8 +26,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kPrimaryColor,
-      body: Container(       
+     // backgroundColor: kPrimaryColor,
+      body: Container( 
+        decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage(backgroundImage), 
+          fit: BoxFit.cover)
+        ),      
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

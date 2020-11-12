@@ -7,3 +7,4 @@ const onboarding3 = 'assets/onboarding3.png';
 const home = 'assets/home.svg';
 const profile = 'assets/home.svg';
 const search = 'assets/search.svg';
+const backgroundImage = 'assets/screen.png';
