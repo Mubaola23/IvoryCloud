@@ -5,6 +5,6 @@ const onboarding1 = 'assets/onboarding1.png';
 const onboarding2 = 'assets/onboarding2.png';
 const onboarding3 = 'assets/onboarding3.png';
 const home = 'assets/home.svg';
-const profile = 'assets/home.svg';
+const profile = 'assets/profile.svg';
 const search = 'assets/search.svg';
 const backgroundImage = 'assets/screen.png';

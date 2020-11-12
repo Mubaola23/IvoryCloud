@@ -116,9 +116,14 @@ class _HospitalScreenState extends State<HospitalScreen> {
             Container(
               height: 60,
               width: 60,
-              decoration: BoxDecoration(
+              decoration: BoxDecoration( 
                   color: Colors.blue[100],
                   borderRadius: BorderRadius.all(Radius.circular(20))),
+                  alignment: Alignment.center,
+                        child: SvgPicture.asset(
+                          logo,
+                          height: 30,
+                        )
             ),
             SizedBox(
               width: 16,

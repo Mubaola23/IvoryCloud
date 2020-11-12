@@ -20,17 +20,17 @@ class HospitalModel {
         imgPath: onboarding3,
       ),
       HospitalModel(
-        name: "Another Hospital",
-        desc: "Name here",
+        name: "Medothist lab",
+        desc: "Private Hospital",
         imgPath: "",
       ),
       HospitalModel(
-        name: "Another Hospital",
-        desc: "Name here",
+        name: "splash Med",
+        desc: "New Hospital",
         imgPath: "",
       ),
       HospitalModel(
-        name: "Ivory Med",
+        name: "Icloud Med",
         desc: "Hospital",
         imgPath: onboarding2,
       ),
