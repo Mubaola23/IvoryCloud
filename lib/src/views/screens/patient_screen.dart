@@ -12,11 +12,11 @@ class PatientScreen extends StatefulWidget {
 
 class _PatientScreenState extends State<PatientScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _ScaffoldKey = GlobalKey<ScaffoldState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _ScaffoldKey,
+      key: _scaffoldKey,
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.transparent,
@@ -33,8 +33,7 @@ class _PatientScreenState extends State<PatientScreen> {
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
             child: GestureDetector(
-              onTap: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => EditPatientScreen())),
+              onTap: () => () {},
               child: Icon(
                 Icons.edit,
                 color: Colors.black,
@@ -116,30 +115,30 @@ class _PatientScreenState extends State<PatientScreen> {
                       Text("REPORT:"),
                       kTinyVerticalSpacing,
                       AppTextField(
-                        title: '',
-                        keyboardType: TextInputType.text,
-                        validator: validateNotEmpty,
-                        textInputAction: TextInputAction.next,
-                        hintText: 'file a report',
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: kPrimaryColor)),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(color: kPrimaryColor)),
-                      ),
+                          // title: '',
+                          // keyboardType: TextInputType.text,
+                          // validator: validateNotEmpty,
+                          // textInputAction: TextInputAction.next,
+                          // hintText: 'file a report',
+                          // enabledBorder: OutlineInputBorder(
+                          //     borderSide: BorderSide(color: kPrimaryColor)),
+                          // border: OutlineInputBorder(
+                          //     borderSide: BorderSide(color: kPrimaryColor)),
+                          ),
                       kMediumVerticalSpacing,
                       Text("EMERGENCY LEVEL:"),
                       kTinyVerticalSpacing,
                       AppTextField(
-                        title: '',
-                        keyboardType: TextInputType.text,
-                        validator: validateNotEmpty,
-                        textInputAction: TextInputAction.done,
-                        hintText: 'file emergency level',
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: kPrimaryColor)),
-                        border: OutlineInputBorder(
-                            borderSide: BorderSide(color: kPrimaryColor)),
-                      ),
+                          // title: '',
+                          // keyboardType: TextInputType.text,
+                          // validator: validateNotEmpty,
+                          // textInputAction: TextInputAction.done,
+                          // hintText: 'file emergency level',
+                          // enabledBorder: OutlineInputBorder(
+                          //     borderSide: BorderSide(color: kPrimaryColor)),
+                          // border: OutlineInputBorder(
+                          //     borderSide: BorderSide(color: kPrimaryColor)),
+                          ),
                       kLargeVerticalSpacing,
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

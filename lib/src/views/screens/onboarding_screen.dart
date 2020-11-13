@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../core/constants.dart';
 import '../../core/images.dart';
 import '../widgets/app_button.dart';
-import 'hospital_page_screen.dart';
+import 'hospital_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   @override
@@ -109,7 +109,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => HospitalScreen()),
+                              builder: (context) => HospitalScreen(),
+                            ),
                           );
                         },
                       ),

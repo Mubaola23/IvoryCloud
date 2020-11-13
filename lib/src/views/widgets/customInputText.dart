@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class CustomInputText extends StatelessWidget {
   final Function(String) validator;

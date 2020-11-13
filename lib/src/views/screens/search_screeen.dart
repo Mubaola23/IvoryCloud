@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../../core/constants.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/paginator.dart';
-import 'dashboard_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -120,13 +119,13 @@ Widget _searchField() {
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.done,
       hintText: 'Search',
-      filled: true,
-      title: '',
-      border: OutlineInputBorder(borderSide: BorderSide.none),
-      prefixIcon: Icon(
-        Icons.search,
-        color: Colors.grey,
-      ),
+      // filled: true,
+      // title: '',
+      // border: OutlineInputBorder(borderSide: BorderSide.none),
+      // prefixIcon: Icon(
+      //   Icons.search,
+      //   color: Colors.grey,
+      // ),
     ),
   );
 }

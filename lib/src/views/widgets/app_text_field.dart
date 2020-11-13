@@ -1,94 +1,23 @@
-// import 'package:flutter/material.dart';
-
-// import '../../core/constants.dart';
-
-// class AppTextField extends StatelessWidget {
-  
-
-//   const AppTextField({
-//     Key key,
-//     @required this.hintText,
-//     this.filled,
-//     this.enabledBorder,
-//     this.keyboardType,
-//     this.border,
-//     this.validator,
-//     this.controller,
-//     this.onFieldSubmitted,
-//     this.enabled,
-//     this.maxlength,
-//     this.prefixIcon,
-//     this.obscureText,
-//     this.title,
-//     this.textInputAction,
-//     this.showCounterText = false,
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         Text(title),
-//         TextFormField(
-//           keyboardType: keyboardType,
-//           validator: validator,
-//           controller: controller,
-//           textInputAction: textInputAction,
-//           obscureText: obscureText ?? false,
-//           onFieldSubmitted: onFieldSubmitted,
-//           maxLength: maxlength,
-//           enabled: enabled,
-//           decoration: InputDecoration(
-//             hintText: hintText,
-//             enabledBorder: enabledBorder,
-//             border: border,
-//             filled: filled,
-//             fillColor: kTextFieldFillColor,
-//             labelStyle: TextStyle(color: kHintColor),
-//             contentPadding: const EdgeInsets.all(16),
-//             counterText: showCounterText ? null : "",
-//             prefixIcon: prefixIcon,
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
 
 import '../../core/constants.dart';
 
 class AppTextField extends StatelessWidget {
-  final String hintText;
-  final bool filled;
-  final bool showCounterText;
-  final bool obscureText;
-  final Widget prefixIcon;
-  final TextEditingController controller;
-  final TextInputType keyboardType;
-  final Function(String) validator;
-  final bool enabled;
-  final Function(String) onFieldSubmitted;
-  final TextInputAction textInputAction;
-  final int maxlength;
-  final InputBorder border;
-  final InputBorder enabledBorder;
-  final String title;
   final String label;
-  //final String hintText;
-  //final bool obscureText;
+  final String hintText;
+  final bool obscureText;
   final int maxLines;
-  //final bool enabled;
- // final TextEditingController controller;
+  final bool enabled;
+  final TextEditingController controller;
   final Widget suffixIcon;
   final void Function(String) onChanged;
- // final String Function(String) validator;
- // final TextInputType keyboardType;
+  final String Function(String) validator;
+  final TextInputType keyboardType;
   final Color borderColor;
   final Color textColor;
-  //final TextInputAction textInputAction;
+  final Color hintColor;
+  final Color labelColor;
+  final TextInputAction textInputAction;
 
   const AppTextField({
     Key key,
@@ -104,7 +33,9 @@ class AppTextField extends StatelessWidget {
     this.keyboardType,
     this.textInputAction,
     this.borderColor,
-    this.textColor = Colors.black87, this.filled, this.showCounterText, this.prefixIcon, this.onFieldSubmitted, this.maxlength, this.border, this.enabledBorder, this.title,
+    this.labelColor = Colors.black,
+    this.textColor = Colors.black87,
+    this.hintColor = Colors.grey,
   }) : super(key: key);
 
   @override
@@ -112,7 +43,14 @@ class AppTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        label != null ? Text(label.toUpperCase()) : SizedBox(),
+        label != null
+            ? Text(
+                label.toUpperCase(),
+                style: TextStyle(
+                  color: labelColor,
+                ),
+              )
+            : SizedBox(),
         label != null ? SizedBox(height: 6) : SizedBox(),
         TextFormField(
           controller: controller,
@@ -126,7 +64,7 @@ class AppTextField extends StatelessWidget {
           obscureText: obscureText ?? false,
           decoration: InputDecoration(
             hintText: hintText,
-            hintStyle: TextStyle(color: Colors.grey),
+            hintStyle: TextStyle(color: hintColor),
             suffixIcon: suffixIcon,
             contentPadding: EdgeInsets.all(16.0),
             border: InputBorder.none,
@@ -158,5 +96,3 @@ class AppTextField extends StatelessWidget {
     );
   }
 }
-
-
