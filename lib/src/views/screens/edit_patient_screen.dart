@@ -1,4 +1,5 @@
 import 'package:IvoryCloud/src/core/constants.dart';
+import 'package:IvoryCloud/src/views/widgets/app_button.dart';
 import 'package:IvoryCloud/src/views/widgets/app_dropdown.dart';
 import 'package:IvoryCloud/src/views/widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
@@ -92,17 +93,15 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                 kMediumVerticalSpacing,
                 AppDropdown(
                   validator: validateGender,
-                  label: 'GENDER',
-                  value: 'Male',
-                  items: ['Male', 'Female'],
+                  value: 'GENDER',
+                  items: ['GENDER', 'Male', 'Female'],
                   onChanged: (_) {},
                 ),
                 kMediumVerticalSpacing,
                 AppDropdown(
                   validator: validateNotEmpty,
-                  label: 'MARITAL STATUS',
-                  value: 'Married',
-                  items: ['Married', 'Single'],
+                  value: 'MARITAL STATUS',
+                  items: ['MARITAL STATUS', 'Married', 'Single'],
                   onChanged: (_) {},
                 ),
                 kMediumVerticalSpacing,
@@ -239,23 +238,11 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
                       borderSide: BorderSide(color: kPrimaryColor)),
                 ),
                 kLargeVerticalSpacing,
-                GestureDetector(
-                  onTap: () {
+                AppButton(
+                  onPressed: () {
                     _updateRecord();
                   },
-                  child: Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 64.0, vertical: 16.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50.0),
-                      color: kPrimaryColor,
-                    ),
-                    child: Text(
-                      'SAVE EDIT',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                  text: 'SAVE EDIT',
                 ),
                 kLargeVerticalSpacing,
               ],
