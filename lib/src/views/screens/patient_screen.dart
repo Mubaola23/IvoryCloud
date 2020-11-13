@@ -146,7 +146,7 @@ class _PatientScreenState extends State<PatientScreen> {
                         onPressed: () {
                           _submit();
                         },
-                        text: 'SUBMIT',
+                        // text: 'SUBMIT',
                       ),
                     ],
                   ),

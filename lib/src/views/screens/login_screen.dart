@@ -63,11 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       fontSize: 14,
                     ),
                   )
-<<<<<<< HEAD
                 ]),
-=======
-                ]),        
->>>>>>> d91a9be01d3ee8bf1d82217bf49bd642b34475eb
                 CustomInputText(
                   validator: validateNotEmpty,
                   hintText: "emailaddress@example.com",
@@ -92,49 +88,50 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 50,
                 ),
                 CustomButton(
-                  text: "LOGIN",
-                  width: 300.0,
-                  onButtonPressed: (){_login();}
-                                  ),
-                                  SizedBox(
-                                    height: 50,
-                                  ),
-                                  RichText(
-                                      text: TextSpan(
-                                          text: "DON'T HAVE AN ACCOUNT? ",
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 14,
-                                          ),
-                                          children: [
-                                        TextSpan(
-                                            text: "SIGN UP",
-                                            style: TextStyle(
-                                              decoration: TextDecoration.underline,
-                                              decorationColor: Colors.white,
-                                              color: Colors.white,
-                                              fontSize: 16,
-                                            ),
-                                            recognizer: TapGestureRecognizer()
-                                              ..onTap = () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) => SignUp()));
-                                              })
-                                      ]))
-                                ],
-                              ),
-                            ),
-                  
-                          ),
+                    text: "LOGIN",
+                    width: 300.0,
+                    onButtonPressed: () {
+                      _login();
+                    }),
+                SizedBox(
+                  height: 50,
+                ),
+                RichText(
+                    text: TextSpan(
+                        text: "DON'T HAVE AN ACCOUNT? ",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
                         ),
-                      );
-                    }
-                  
-      void _login() async {
+                        children: [
+                      TextSpan(
+                          text: "SIGN UP",
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            decorationColor: Colors.white,
+                            color: Colors.white,
+                            fontSize: 16,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SignUp()));
+                            })
+                    ]))
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _login() async {
     if (_formKey.currentState.validate()) {
-      Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => HomeScreen()));
     }
   }
 }

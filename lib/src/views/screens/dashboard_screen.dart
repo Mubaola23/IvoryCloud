@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-=======
-import 'package:IvoryCloud/src/core/constants.dart';
-import 'package:IvoryCloud/src/views/screens/add_patient_screen.dart';
-import 'package:IvoryCloud/src/views/screens/patient_screen.dart';
-import 'package:IvoryCloud/src/views/widgets/paginator.dart';
->>>>>>> d91a9be01d3ee8bf1d82217bf49bd642b34475eb
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -39,7 +32,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
             Expanded(
               child: Card(
                 margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
-<<<<<<< HEAD
                 child: Consumer<PatientViewModel>(
                   builder: (context, patientViewModel, _) {
                     if (patientViewModel.state == NotifierState.loading) {
@@ -59,57 +51,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       }
                     }
                   },
-=======
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Expanded(
-                      child: DataTable(
-                        columns: const <DataColumn>[
-                          DataColumn(label: Text('S/N')),
-                          DataColumn(label: Text('Patient ID')),
-                          DataColumn(label: Text('Name')),
-                        ],
-                        rows: patients
-                            .map((patient) => DataRow(
-                                  cells: <DataCell>[
-                                    DataCell(GestureDetector(
-                                        onTap: () {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      PatientScreen()));
-                                        },
-                                        child: Text(patient.serialNo))),
-                                    DataCell(GestureDetector(
-                                        onTap: () {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      PatientScreen()));
-                                        },
-                                        child: Text(patient.patientId))),
-                                    DataCell(GestureDetector(
-                                        onTap: () {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      PatientScreen()));
-                                        },
-                                        child: Text(patient.name))),
-                                  ],
-                                ))
-                            .toList(),
-                      ),
-                    ),
-                    Paginator(
-                      selectedPage: 6,
-                      onItemTapped: (index) {
-                        print(index);
-                      },
-                    ),
-                  ],
->>>>>>> d91a9be01d3ee8bf1d82217bf49bd642b34475eb
                 ),
               ),
             ),

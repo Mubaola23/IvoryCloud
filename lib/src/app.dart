@@ -1,5 +1,3 @@
-import 'package:IvoryCloud/src/views/screens/home_screen.dart';
-import 'package:IvoryCloud/src/views/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'core/constants.dart';
@@ -15,7 +13,7 @@ class App extends StatelessWidget {
         primaryColor: kPrimaryColor,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeScreen(),
+      home: SplashScreen(),
     );
   }
 }
