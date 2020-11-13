@@ -1,3 +1,4 @@
+import 'package:IvoryCloud/src/views/screens/patient_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/constants.dart';
@@ -61,9 +62,30 @@ class _SearchScreenState extends State<SearchScreen> {
                           rows: patients
                               .map((patient) => DataRow(
                                     cells: <DataCell>[
-                                      DataCell(Text(patient.serialNo)),
-                                      DataCell(Text(patient.patientId)),
-                                      DataCell(Text(patient.name)),
+                                      DataCell(GestureDetector(
+                                          onTap: () {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        PatientScreen()));
+                                          },
+                                          child: Text(patient.serialNo))),
+                                      DataCell(GestureDetector(
+                                          onTap: () {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        PatientScreen()));
+                                          },
+                                          child: Text(patient.patientId))),
+                                      DataCell(GestureDetector(
+                                          onTap: () {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        PatientScreen()));
+                                          },
+                                          child: Text(patient.name))),
                                     ],
                                   ))
                               .toList(),

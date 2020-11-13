@@ -3,7 +3,6 @@
 // import '../../core/constants.dart';
 
 // class AppTextField extends StatelessWidget {
-  
 
 //   const AppTextField({
 //     Key key,
@@ -77,18 +76,11 @@ class AppTextField extends StatelessWidget {
   final InputBorder enabledBorder;
   final String title;
   final String label;
-  //final String hintText;
-  //final bool obscureText;
   final int maxLines;
-  //final bool enabled;
- // final TextEditingController controller;
   final Widget suffixIcon;
   final void Function(String) onChanged;
- // final String Function(String) validator;
- // final TextInputType keyboardType;
   final Color borderColor;
   final Color textColor;
-  //final TextInputAction textInputAction;
 
   const AppTextField({
     Key key,
@@ -104,7 +96,15 @@ class AppTextField extends StatelessWidget {
     this.keyboardType,
     this.textInputAction,
     this.borderColor,
-    this.textColor = Colors.black87, this.filled, this.showCounterText, this.prefixIcon, this.onFieldSubmitted, this.maxlength, this.border, this.enabledBorder, this.title,
+    this.textColor = Colors.black87,
+    this.filled,
+    this.showCounterText,
+    this.prefixIcon,
+    this.onFieldSubmitted,
+    this.maxlength,
+    this.border,
+    this.enabledBorder,
+    this.title,
   }) : super(key: key);
 
   @override
@@ -127,6 +127,7 @@ class AppTextField extends StatelessWidget {
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: TextStyle(color: Colors.grey),
+            prefixIcon: prefixIcon,
             suffixIcon: suffixIcon,
             contentPadding: EdgeInsets.all(16.0),
             border: InputBorder.none,
@@ -158,5 +159,3 @@ class AppTextField extends StatelessWidget {
     );
   }
 }
-
-

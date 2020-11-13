@@ -1,7 +1,9 @@
 import 'package:IvoryCloud/src/core/constants.dart';
+import 'package:IvoryCloud/src/views/screens/add_visits.dart';
 import 'package:IvoryCloud/src/views/screens/all_reports_screen.dart';
 import 'package:IvoryCloud/src/views/screens/all_visits_screen.dart';
 import 'package:IvoryCloud/src/views/screens/edit_patient_screen.dart';
+import 'package:IvoryCloud/src/views/widgets/app_button.dart';
 import 'package:IvoryCloud/src/views/widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
 
@@ -12,17 +14,17 @@ class PatientScreen extends StatefulWidget {
 
 class _PatientScreenState extends State<PatientScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _ScaffoldKey = GlobalKey<ScaffoldState>();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _ScaffoldKey,
+      key: _scaffoldKey,
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         leading: GestureDetector(
           onTap: () {
-//            Navigator.pop(context);
+            Navigator.pop(context);
           },
           child: Icon(
             Icons.arrow_back_ios,
@@ -141,29 +143,11 @@ class _PatientScreenState extends State<PatientScreen> {
                             borderSide: BorderSide(color: kPrimaryColor)),
                       ),
                       kLargeVerticalSpacing,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              _submit();
-                            },
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 64.0, vertical: 16.0),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50.0),
-                                color: kPrimaryColor,
-                              ),
-                              child: Text(
-                                'SUBMIT',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                          ),
-                        ],
+                      AppButton(
+                        onPressed: () {
+                          _submit();
+                        },
+                        text: 'SUBMIT',
                       ),
                     ],
                   ),
@@ -321,6 +305,14 @@ class _PatientScreenState extends State<PatientScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => AddVisits()));
+                },
+                child: Icon(Icons.add_box_outlined),
+              ),
+              Spacer(),
               GestureDetector(
                 child: Text(
                   'View all',

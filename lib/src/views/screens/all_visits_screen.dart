@@ -1,5 +1,6 @@
 import 'package:IvoryCloud/src/core/constants.dart';
-import 'package:IvoryCloud/src/views/screens/patient_screen.dart';
+import 'package:IvoryCloud/src/views/screens/add_visits.dart';
+import 'package:IvoryCloud/src/views/screens/single_visit_screen.dart';
 import 'package:flutter/material.dart';
 
 class AllVisitsScreen extends StatefulWidget {
@@ -15,8 +16,7 @@ class _AllVisitsScreenState extends State<AllVisitsScreen> {
         elevation: 0.0,
         backgroundColor: Colors.transparent,
         leading: GestureDetector(
-          onTap: () => Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => PatientScreen())),
+          onTap: () => Navigator.pop(context),
           child: Icon(
             Icons.arrow_back_ios,
             color: Colors.black,
@@ -26,8 +26,10 @@ class _AllVisitsScreenState extends State<AllVisitsScreen> {
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
             child: GestureDetector(
-              onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => PatientScreen())),
+              onTap: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => AddVisits()));
+              },
               child: Icon(
                 Icons.add_box_outlined,
                 color: Colors.black,
@@ -77,7 +79,7 @@ class _AllVisitsScreenState extends State<AllVisitsScreen> {
                 margin: EdgeInsets.only(top: 16),
                 child: Row(children: [
                   CircleAvatar(
-                    radius: 50,
+                    radius: 40,
                     backgroundColor: kTextFieldFillColor,
                   ),
                   kSmallHorizontalSpacing,
@@ -114,7 +116,10 @@ class _AllVisitsScreenState extends State<AllVisitsScreen> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => SingleVisitScreen()));
+                        },
                         child: Text(
                           'Tap to View More',
                           style: TextStyle(fontWeight: FontWeight.w200),

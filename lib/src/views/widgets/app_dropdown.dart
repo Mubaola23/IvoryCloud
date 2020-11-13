@@ -4,16 +4,13 @@ import 'package:flutter/material.dart';
 class AppDropdown extends StatelessWidget {
   final List<String> items;
   final String value;
-  final String label;
   final void Function(String) onChanged;
   final String Function(String) validator;
-
   const AppDropdown({
     Key key,
     @required this.items,
     @required this.value,
     @required this.onChanged,
-    this.label,
     this.validator,
   }) : super(key: key);
 
@@ -22,9 +19,6 @@ class AppDropdown extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-        ),
         DropdownButtonFormField(
           items: items.map(
             (String item) {
