@@ -255,7 +255,7 @@ class _EditPatientScreenState extends State<EditPatientScreen> {
 
   showAlertDialog(BuildContext context) {
     Widget yesButton = FlatButton(
-//      onPressed: () => _updateRecord(),
+      onPressed: () => _updateRecord(),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
         decoration: BoxDecoration(

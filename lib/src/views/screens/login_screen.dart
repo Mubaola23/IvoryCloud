@@ -87,44 +87,48 @@ class _LoginState extends State<Login> {
                 CustomButton(
                   text: "LOGIN",
                   width: 300.0,
-                  onButtonPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
-                  },
-                ),
-                SizedBox(
-                  height: 50,
-                ),
-                RichText(
-                    text: TextSpan(
-                        text: "DON'T HAVE AN ACCOUNT? ",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14,
-                        ),
-                        children: [
-                      TextSpan(
-                          text: "SIGN UP",
-                          style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            decorationColor: Colors.white,
-                            color: Colors.white,
-                            fontSize: 16,
+                  onButtonPressed: (){_login();}
+                                  ),
+                                  SizedBox(
+                                    height: 50,
+                                  ),
+                                  RichText(
+                                      text: TextSpan(
+                                          text: "DON'T HAVE AN ACCOUNT? ",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14,
+                                          ),
+                                          children: [
+                                        TextSpan(
+                                            text: "SIGN UP",
+                                            style: TextStyle(
+                                              decoration: TextDecoration.underline,
+                                              decorationColor: Colors.white,
+                                              color: Colors.white,
+                                              fontSize: 16,
+                                            ),
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap = () {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) => SignUp()));
+                                              })
+                                      ]))
+                                ],
+                              ),
+                            ),
+                  
                           ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => SignUp()));
-                            })
-                    ]))
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+                        ),
+                      );
+                    }
+                  
+      void _login() async {
+    if (_formKey.currentState.validate()) {
+      Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+    }
   }
 }
 
