@@ -1,5 +1,6 @@
 import 'package:IvoryCloud/src/core/constants.dart';
 import 'package:IvoryCloud/src/views/screens/add_patient_screen.dart';
+import 'package:IvoryCloud/src/views/screens/patient_screen.dart';
 import 'package:IvoryCloud/src/views/widgets/paginator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -61,9 +62,30 @@ class DashboardScreen extends StatelessWidget {
                         rows: patients
                             .map((patient) => DataRow(
                                   cells: <DataCell>[
-                                    DataCell(Text(patient.serialNo)),
-                                    DataCell(Text(patient.patientId)),
-                                    DataCell(Text(patient.name)),
+                                    DataCell(GestureDetector(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      PatientScreen()));
+                                        },
+                                        child: Text(patient.serialNo))),
+                                    DataCell(GestureDetector(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      PatientScreen()));
+                                        },
+                                        child: Text(patient.patientId))),
+                                    DataCell(GestureDetector(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      PatientScreen()));
+                                        },
+                                        child: Text(patient.name))),
                                   ],
                                 ))
                             .toList(),

@@ -1,9 +1,8 @@
-
 import 'package:IvoryCloud/src/core/constants.dart';
+import 'package:IvoryCloud/src/views/widgets/app_button.dart';
 import 'package:IvoryCloud/src/views/widgets/app_dropdown.dart';
 import 'package:IvoryCloud/src/views/widgets/app_text_field.dart';
 import 'package:flutter/material.dart';
-
 
 class AddPatientScreen extends StatefulWidget {
   @override
@@ -11,7 +10,6 @@ class AddPatientScreen extends StatefulWidget {
 }
 
 class _AddPatientScreenState extends State<AddPatientScreen> {
-
   final _formKey = GlobalKey<FormState>();
   final _ScaffoldKey = GlobalKey<ScaffoldState>();
   @override
@@ -71,7 +69,6 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
                 kMediumVerticalSpacing,
                 AppDropdown(
                   validator: validateGender,
-                  label: '',
                   value: 'GENDER',
                   items: ['GENDER', 'Male', 'Female'],
                   onChanged: (_) {},
@@ -119,7 +116,6 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
                 kMediumVerticalSpacing,
                 AppDropdown(
                   validator: validateAllergies,
-                  label: '',
                   value: 'ALLEGRIES',
                   items: ['ALLEGRIES', 'ULCER', 'COLD'],
                   onChanged: (_) {},
@@ -140,7 +136,6 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
                 kMediumVerticalSpacing,
                 AppDropdown(
                   validator: validateGender,
-                  label: '',
                   value: 'BLOOD TYPE',
                   items: ['BLOOD TYPE', 'O+', 'O-'],
                   onChanged: (_) {},
@@ -159,27 +154,14 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
                       borderSide: BorderSide(color: kPrimaryColor)),
                 ),
                 kLargeVerticalSpacing,
-                GestureDetector(
-                  onTap: () {
+                AppButton(
+                  onPressed: () {
                     _addPatient();
                   },
-                  child: Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 64.0, vertical: 16.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50.0),
-                      color: kPrimaryColor,
-                    ),
-                    child: Text(
-                      'ADD PATIENT',
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
-                  ),
+                  text: 'ADD PATIENT',
                 ),
                 kLargeVerticalSpacing,
               ],
-
             ),
           ),
         ),
@@ -187,11 +169,9 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
     );
   }
 
-
-
   showAlertDialog(BuildContext context) {
     Widget yesButton = FlatButton(
-//      onPressed: () => _addPatient(),
+      onPressed: () => _addPatient(),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
         decoration: BoxDecoration(
@@ -267,4 +247,3 @@ String validateAllergies(String value) =>
 
 String validateBloodType(String value) =>
     value == 'Blood Type' ? 'Choose a blood type' : null;
-
