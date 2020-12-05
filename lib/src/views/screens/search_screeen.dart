@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../../core/constants.dart';
 import '../widgets/app_text_field.dart';
 import '../widgets/paginator.dart';
-import 'dashboard_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -52,45 +51,24 @@ class _SearchScreenState extends State<SearchScreen> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Expanded(
-                        child: DataTable(
-                          columns: const <DataColumn>[
-                            DataColumn(label: Text('S/N')),
-                            DataColumn(label: Text('Patient ID')),
-                            DataColumn(label: Text('Name')),
-                          ],
-                          rows: patients
-                              .map((patient) => DataRow(
-                                    cells: <DataCell>[
-                                      DataCell(GestureDetector(
-                                          onTap: () {
-                                            Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        PatientScreen()));
-                                          },
-                                          child: Text(patient.serialNo))),
-                                      DataCell(GestureDetector(
-                                          onTap: () {
-                                            Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        PatientScreen()));
-                                          },
-                                          child: Text(patient.patientId))),
-                                      DataCell(GestureDetector(
-                                          onTap: () {
-                                            Navigator.of(context).push(
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        PatientScreen()));
-                                          },
-                                          child: Text(patient.name))),
-                                    ],
-                                  ))
-                              .toList(),
-                        ),
-                      ),
+                      // Expanded(
+                      //   child: DataTable(
+                      //     columns: const <DataColumn>[
+                      //       DataColumn(label: Text('S/N')),
+                      //       DataColumn(label: Text('Patient ID')),
+                      //       DataColumn(label: Text('Name')),
+                      //     ],
+                      //     rows: patients
+                      //         .map((patient) => DataRow(
+                      //               cells: <DataCell>[
+                      //                 DataCell(Text(patient.serialNo)),
+                      //                 DataCell(Text(patient.patientId)),
+                      //                 DataCell(Text(patient.name)),
+                      //               ],
+                      //             ))
+                      //         .toList(),
+                      //   ),
+                      // ),
                       Paginator(
                         selectedPage: 1,
                         onItemTapped: (index) {
@@ -142,13 +120,13 @@ Widget _searchField() {
       keyboardType: TextInputType.text,
       textInputAction: TextInputAction.done,
       hintText: 'Search',
-      filled: true,
-      title: '',
-      border: OutlineInputBorder(borderSide: BorderSide.none),
-      prefixIcon: Icon(
-        Icons.search,
-        color: Colors.grey,
-      ),
+      // filled: true,
+      // title: '',
+      // border: OutlineInputBorder(borderSide: BorderSide.none),
+      // prefixIcon: Icon(
+      //   Icons.search,
+      //   color: Colors.grey,
+      // ),
     ),
   );
 }

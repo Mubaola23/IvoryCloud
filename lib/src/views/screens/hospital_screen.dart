@@ -62,10 +62,7 @@ class _HospitalScreenState extends State<HospitalScreen> {
               padding: EdgeInsets.symmetric(horizontal: 16),
               itemBuilder: (context, index) {
                 return GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()));
-                  },
+                  onTap: () {},
                   child: Padding(
                     padding: const EdgeInsets.only(top: 20.0),
                     child: buildContainer(index, 300),

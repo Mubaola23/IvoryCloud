@@ -1,34 +1,34 @@
 import 'dart:ui';
 
-import 'package:IvoryCloud/src/views/screens/home_screen.dart';
-import 'package:IvoryCloud/src/views/screens/signup_screen.dart';
-import 'package:IvoryCloud/src/views/widgets/customButton.dart';
-import 'package:IvoryCloud/src/views/widgets/customInputText.dart';
+import 'package:IvoryCloud/src/views/widgets/app_text_field.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../core/constants.dart';
 import '../../core/images.dart';
+import '../widgets/customButton.dart';
+import '../widgets/customInputText.dart';
+import 'home_screen.dart';
+import 'signup_screen.dart';
 
-class Login extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: kPrimaryColor,
       body: Container(
         height: double.infinity,
-        padding: EdgeInsets.symmetric(vertical: 30, horizontal: 30),
+        padding: EdgeInsets.fromLTRB(32, 48, 32, 0),
         decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage(backgroundImage), fit: BoxFit.cover)),
+          image: DecorationImage(
+              image: AssetImage(backgroundImage), fit: BoxFit.cover),
+        ),
         child: SingleChildScrollView(
           child: Form(
             key: _formKey,
@@ -40,17 +40,20 @@ class _LoginState extends State<Login> {
                       "Login",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 50,
+                        fontSize: 40,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 50,
-                ),
-                Center(child: SvgPicture.asset(logo)),
-                SizedBox(
-                  height: 30,
+                SizedBox(height: 50),
+                SvgPicture.asset(logo, width: 45, height: 45),
+                SizedBox(height: 32),
+                AppTextField(
+                  label: 'EMAIL',
+                  borderColor: Colors.white,
+                  textColor: Colors.white,
+                  hintText: 'john.doe@gmail.com',
                 ),
                 Row(children: [
                   Text(
@@ -61,7 +64,6 @@ class _LoginState extends State<Login> {
                     ),
                   )
                 ]),
-                
                 CustomInputText(
                   validator: validateNotEmpty,
                   hintText: "emailaddress@example.com",
@@ -86,13 +88,11 @@ class _LoginState extends State<Login> {
                   height: 50,
                 ),
                 CustomButton(
-                  text: "LOGIN",
-                  width: 300.0,
-                  onButtonPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
-                  },
-                ),
+                    text: "LOGIN",
+                    width: 300.0,
+                    onButtonPressed: () {
+                      _login();
+                    }),
                 SizedBox(
                   height: 50,
                 ),
@@ -126,6 +126,13 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+  }
+
+  void _login() async {
+    if (_formKey.currentState.validate()) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+    }
   }
 }
 

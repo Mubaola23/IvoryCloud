@@ -1,8 +1,13 @@
-import 'package:IvoryCloud/src/core/constants.dart';
-import 'package:IvoryCloud/src/views/widgets/app_button.dart';
-import 'package:IvoryCloud/src/views/widgets/app_dropdown.dart';
-import 'package:IvoryCloud/src/views/widgets/app_text_field.dart';
+import 'package:IvoryCloud/src/core/utilities/notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../core/constants.dart';
+import '../../models/patient.dart';
+import '../../viewmodels/add_patient_viewmodel.dart';
+import '../widgets/app_dropdown.dart';
+import '../widgets/app_text_field.dart';
+import 'home_screen.dart';
 
 class AddPatientScreen extends StatefulWidget {
   @override
@@ -10,158 +15,216 @@ class AddPatientScreen extends StatefulWidget {
 }
 
 class _AddPatientScreenState extends State<AddPatientScreen> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
-  final _ScaffoldKey = GlobalKey<ScaffoldState>();
+
+  String fullName;
+  int age;
+  String maritalStatus = 'Select Marital Status';
+  String gender = 'Select Gender';
+  String lga;
+  String state;
+  String homeAddress;
+  String phoneNumber;
+  String emailAddress;
+  String nextOfKin;
+  String symptom;
+  String comment;
+  String patientType = 'Select Patient Type';
+
+  void addPatient(AddPatientViewModel addPatientViewModel) async {
+    FocusScope.of(context).requestFocus(FocusNode());
+
+    if (_formKey.currentState.validate()) {
+      final patient = Patient(
+        age: age,
+        comment: comment,
+        emailAddress: emailAddress,
+        fullName: fullName,
+        gender: gender,
+        homeAddress: homeAddress,
+        lga: lga,
+        maritalStatus: maritalStatus,
+        nextOfKin: nextOfKin,
+        passport: 'JJJ',
+        patientType: patientType,
+        phoneNumber: phoneNumber,
+        state: state,
+        symptom: symptom,
+        timestamp: DateTime.now().toUtc().toString(),
+      );
+
+      await addPatientViewModel.addPatient(patient);
+
+      if (addPatientViewModel.error != null) {
+        scaffoldKey.currentState.showSnackBar(
+          snackBar(addPatientViewModel.error.toString()),
+        );
+      } else {
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (_) => HomeScreen()),
+        );
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: _ScaffoldKey,
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Colors.transparent,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black,
-          ),
+    return ChangeNotifierProvider<AddPatientViewModel>(
+      create: (context) => AddPatientViewModel(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Enter Patient Details'),
         ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
           child: Form(
             key: _formKey,
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    CircleAvatar(
-                      radius: 50,
-                      backgroundColor: kTextFieldFillColor,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  kMediumVerticalSpacing,
+                  AppTextField(
+                    label: 'Full Name',
+                    hintText: 'John Doe',
+                    validator: (val) =>
+                        val.isEmpty ? 'Name cannot be empty' : null,
+                    onChanged: (val) => fullName = val,
+                  ),
+                  kSmallVerticalSpacing,
+                  AppTextField(
+                    label: 'Age',
+                    hintText: '19',
+                    keyboardType: TextInputType.number,
+                    validator: (val) =>
+                        val.isEmpty ? 'Age cannot be empty' : null,
+                    onChanged: (val) => age = int.parse(val),
+                  ),
+                  kSmallVerticalSpacing,
+                  AppDropdown(
+                    label: 'Marital Status',
+                    items: [
+                      'Select Marital Status',
+                      'Married',
+                      'Single',
+                      'Divorced'
+                    ],
+                    onChanged: (val) => maritalStatus = val,
+                    value: maritalStatus,
+                    validator: (val) => val == 'Select Marital Status'
+                        ? 'Please select a valid marital status'
+                        : null,
+                  ),
+                  kSmallVerticalSpacing,
+                  AppDropdown(
+                    label: 'Gender',
+                    items: ['Select Gender', 'Male', 'Female'],
+                    onChanged: (val) => gender = val,
+                    value: gender,
+                    validator: (val) => val == 'Select Gender'
+                        ? 'Please select a valid gender'
+                        : null,
+                  ),
+                  kSmallVerticalSpacing,
+                  AppTextField(
+                    label: 'LGA',
+                    hintText: 'Ikeja Local Government',
+                    validator: (val) =>
+                        val.isEmpty ? 'LGA cannot be empty' : null,
+                    onChanged: (val) => lga = val,
+                  ),
+                  kSmallVerticalSpacing,
+                  AppTextField(
+                    label: 'State',
+                    hintText: 'Lagos State',
+                    validator: (val) =>
+                        val.isEmpty ? 'State cannot be empty' : null,
+                    onChanged: (val) => state = val,
+                  ),
+                  kSmallVerticalSpacing,
+                  AppTextField(
+                    label: 'Home Address',
+                    hintText: '57, Marina Street',
+                    validator: (val) =>
+                        val.isEmpty ? 'Home address cannot be empty' : null,
+                    onChanged: (val) => homeAddress = val,
+                  ),
+                  kSmallVerticalSpacing,
+                  AppTextField(
+                    label: 'Phone Number',
+                    keyboardType: TextInputType.number,
+                    hintText: '08000000000',
+                    validator: (val) =>
+                        val.isEmpty ? 'Phone number cannot be empty' : null,
+                    onChanged: (val) => phoneNumber = val,
+                  ),
+                  kSmallVerticalSpacing,
+                  AppTextField(
+                    label: 'Email Address',
+                    keyboardType: TextInputType.emailAddress,
+                    hintText: 'john.doe@gmail.com',
+                    validator: (val) =>
+                        val.isEmpty ? 'Email cannot be empty' : null,
+                    onChanged: (val) => emailAddress = val,
+                  ),
+                  kSmallVerticalSpacing,
+                  AppTextField(
+                    label: 'Next of Kin',
+                    hintText: 'John Smith',
+                    validator: (val) =>
+                        val.isEmpty ? 'Next of Kin cannot be empty' : null,
+                    onChanged: (val) => nextOfKin = val,
+                  ),
+                  kSmallVerticalSpacing,
+                  AppTextField(
+                    label: 'Symptom',
+                    hintText: 'Headache',
+                    onChanged: (val) => symptom = val,
+                  ),
+                  kSmallVerticalSpacing,
+                  AppTextField(
+                    label: 'Comment',
+                    hintText: 'Okay',
+                    onChanged: (val) => comment = val,
+                  ),
+                  kSmallVerticalSpacing,
+                  AppDropdown(
+                    label: 'Patient Type',
+                    items: ['Select Patient Type', 'In Patient', 'Out Patient'],
+                    onChanged: (val) => patientType = val,
+                    value: patientType,
+                    validator: (val) => val == 'Select Patient Type'
+                        ? 'Please select a valid patient type'
+                        : null,
+                  ),
+                  kSmallVerticalSpacing,
+                  Consumer<AddPatientViewModel>(
+                    builder: (context, addPatientViewModel, _) => RaisedButton(
+                      onPressed: () => addPatient(addPatientViewModel),
+                      color: kPrimaryColor,
+                      textColor: Colors.white,
+                      padding:
+                          EdgeInsets.symmetric(vertical: 16, horizontal: 24.0),
+                      child: addPatientViewModel.state == NotifierState.loading
+                          ? SizedBox(
+                              width: 25.0,
+                              height: 25.0,
+                              child: CircularProgressIndicator(
+                                valueColor:
+                                    AlwaysStoppedAnimation<Color>(Colors.white),
+                              ),
+                            )
+                          : Text(
+                              'ADD PATIENT',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
                     ),
-                    Icon(Icons.edit),
-                  ],
-                ),
-                kLargeVerticalSpacing,
-                Text(
-                  'ENTER PATIENT\'S DETAILS',
-                  style: kHeadingText,
-                ),
-                kMediumVerticalSpacing,
-                AppTextField(
-                  keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.next,
-                  hintText: 'FULL NAME ',
-                  validator: validateFullName,
-                  filled: false,
-                  title: '',
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                ),
-                kMediumVerticalSpacing,
-                AppDropdown(
-                  validator: validateGender,
-                  value: 'GENDER',
-                  items: ['GENDER', 'Male', 'Female'],
-                  onChanged: (_) {},
-                ),
-                kMediumVerticalSpacing,
-                AppTextField(
-                  keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.next,
-                  hintText: 'ADDRESS',
-                  validator: validateNotEmpty,
-                  filled: false,
-                  title: '',
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                ),
-                kMediumVerticalSpacing,
-                AppTextField(
-                  title: '',
-                  keyboardType: TextInputType.number,
-                  textInputAction: TextInputAction.next,
-                  hintText: 'PHONE NUMBER',
-                  filled: false,
-                  validator: validatePhoneNumber,
-                  maxlength: 11,
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                ),
-                kMediumVerticalSpacing,
-                AppTextField(
-                  keyboardType: TextInputType.datetime,
-                  textInputAction: TextInputAction.next,
-                  hintText: 'DATE OF BIRTH',
-                  validator: validateNotEmpty,
-                  filled: false,
-                  title: '',
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                ),
-                kMediumVerticalSpacing,
-                AppDropdown(
-                  validator: validateAllergies,
-                  value: 'ALLEGRIES',
-                  items: ['ALLEGRIES', 'ULCER', 'COLD'],
-                  onChanged: (_) {},
-                ),
-                kMediumVerticalSpacing,
-                AppTextField(
-                  validator: validateNotEmpty,
-                  keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.next,
-                  hintText: 'DISEASE',
-                  filled: false,
-                  title: '',
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                ),
-                kMediumVerticalSpacing,
-                AppDropdown(
-                  validator: validateGender,
-                  value: 'BLOOD TYPE',
-                  items: ['BLOOD TYPE', 'O+', 'O-'],
-                  onChanged: (_) {},
-                ),
-                kMediumVerticalSpacing,
-                AppTextField(
-                  keyboardType: TextInputType.text,
-                  textInputAction: TextInputAction.done,
-                  hintText: 'ADDITIONAL INFO',
-                  validator: validateNotEmpty,
-                  filled: false,
-                  title: '',
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                ),
-                kLargeVerticalSpacing,
-                AppButton(
-                  onPressed: () {
-                    _addPatient();
-                  },
-                  text: 'ADD PATIENT',
-                ),
-                kLargeVerticalSpacing,
-              ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -169,81 +232,12 @@ class _AddPatientScreenState extends State<AddPatientScreen> {
     );
   }
 
-  showAlertDialog(BuildContext context) {
-    Widget yesButton = FlatButton(
-//      onPressed: () => _addPatient(),
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50.0),
-          color: kPrimaryColor,
-        ),
-        child: Text(
-          'YES',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-      ),
+  Widget snackBar(String message) {
+    return SnackBar(
+      behavior: SnackBarBehavior.floating,
+      content: Text(message),
+      duration: Duration(seconds: 4),
+      backgroundColor: Colors.red,
     );
-    Widget noButton = FlatButton(
-      onPressed: () => Navigator.pop(context),
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(50.0),
-          color: Colors.blue.shade200,
-        ),
-        child: Text(
-          'NO',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-      ),
-    );
-
-    AlertDialog alert = AlertDialog(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(32))),
-      title: Text(
-        'Confirm Edit',
-        textAlign: TextAlign.center,
-        style: TextStyle(color: kPrimaryColor),
-      ),
-      content: Text(
-        'Do you want to continue with your decision to save edit?',
-        textAlign: TextAlign.center,
-      ),
-      actions: [yesButton, noButton],
-    );
-
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alert;
-        });
-  }
-
-  void _addPatient() async {
-    FocusScope.of(context).unfocus();
-
-    if (_formKey.currentState.validate()) {
-      showAlertDialog(context);
-    }
   }
 }
-
-String validatePhoneNumber(String value) =>
-    value.length < 10 ? 'Enter a Valid Phone Number' : null;
-
-String validateNotEmpty(String value) =>
-    value.isEmpty ? 'Field cannot be empty' : null;
-
-String validateFullName(String value) =>
-    value.split(' ').length < 2 ? 'Enter a valid Full Name' : null;
-
-String validateGender(String value) =>
-    value == 'Gender' ? 'Choose one of male or female' : null;
-
-String validateAllergies(String value) =>
-    value == 'Allergies' ? 'Choose an allergy' : null;
-
-String validateBloodType(String value) =>
-    value == 'Blood Type' ? 'Choose a blood type' : null;

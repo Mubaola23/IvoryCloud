@@ -31,7 +31,7 @@ class _SingleVisitScreenState extends State<SingleVisitScreen> {
           children: [
             Visit(),
             kMediumVerticalSpacing,
-            AppButton(text: 'EDIT', onPressed: () {}),
+            // AppButton(text: 'EDIT', onPressed: () {}),
           ],
         ),
       ),

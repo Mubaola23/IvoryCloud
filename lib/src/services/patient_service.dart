@@ -38,6 +38,33 @@ class PatientService {
     );
   }
 
+  Future<void> editPatientWithId(Patient patient) async {
+    final snapshotLength = (await _patientCollection.get()).docs.length;
+
+    return await _patientCollection.doc('00${snapshotLength + 1}').update(
+      {
+        'patientNumber': '202000${snapshotLength + 1}',
+        'fullName': patient.fullName,
+        'age': patient.age,
+        'maritalStatus': patient.maritalStatus,
+        'gender': patient.gender,
+        'lga': patient.lga,
+        'state': patient.state,
+        'homeAddress': patient.homeAddress,
+        'phoneNumber': patient.phoneNumber,
+        'emailAddress': patient.emailAddress,
+        'nextOfKin': patient.nextOfKin,
+        'comment': patient.comment,
+        'patientType': patient.patientType,
+        'passport': patient.passport,
+        'timestamp': DateTime.now().toUtc().toString(),
+      },
+    )
+     .then((value) => print("User Updated"))
+    .catchError((error) => print("Failed to update user: $error"));
+}
+  
+
   // @override
   // Future<CardInfo> addCardInfo(CardParams params) async {
   //   String logoUrl = await _uploadLogo(params.logoImage, params.brandName);
